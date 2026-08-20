@@ -2,6 +2,9 @@ import express from "express";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import healthCheckRouter from "./routes/healthCheck.route.js";
+import authRouter from "./routes/auth.route.js";
+import userRouter from "./routes/user.route.js";
 
 const app = express();
 
@@ -23,5 +26,8 @@ app.get("/", (req, res) => {
 });
 
 // routes
+app.use("/api/v1/health-check", healthCheckRouter);
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/user", userRouter);
 
 export default app;
