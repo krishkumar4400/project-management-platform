@@ -1,0 +1,72 @@
+users[icon: user] {
+  id string pk
+  avatar string
+  fullname string
+  username string 
+  email string
+  password string
+  
+  refreshToken string
+  emailVerificationToken string
+  emailVerificationTokenExpiry Date
+  resetPasswordToken string
+  resetPasswordTokenExpiry Date
+  isEmailVerified boolean
+
+  createAt Date
+  updatedAt Date
+}
+
+projects[icon: tool] {
+  id string pk
+  title string 
+  description string
+  createdBy ObjectId users
+}
+
+project_member[icon: user] {
+  id string pk 
+  project ObjectId project
+  user ObjectId users
+  role enum "ADMIN", "PROJECT_ADMIN", "MEMBER"
+}
+
+tasks[icon: task] {
+  id pk ObjectId
+  title string
+  description string
+  project ObjectId projects
+  assignedBy ObjectId users
+  assignedTo ObjectId users
+  status enum "COMPLETED", "PENDING"
+  attachments string
+}
+
+subtasks[icon: task] {
+  id string pk
+  title string
+  task ObjectId task
+  isCompleted boolean 
+  createdBy ObjectId users
+}
+
+notes[icon: notebook] {
+  id string pk
+  project ObjectId projects
+  createdBy ObjectId users
+  content string
+}
+
+projects.createdBy > users.id
+
+project_member.project > projects.id
+project_member.user > users.id
+
+tasks.id > projects.id
+tasks.assignedBy > users.id
+tasks.assignedTo - users.id
+
+subtasks.task > tasks.id
+subtasks.createdBy - users.id
+
+notes.project > projects.id
