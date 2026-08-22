@@ -2,7 +2,11 @@ import transporter from "../config/nodemailer.js";
 
 
 async function sendMail({to, subject, html}) {
-    const mailOptions = {};
+    const mailOptions = {
+        to,
+        subject,
+        html
+    };
 
     const mailInfo = await transporter.sendMail(mailOptions);
 

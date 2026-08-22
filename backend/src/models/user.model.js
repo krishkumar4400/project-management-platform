@@ -32,10 +32,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Password is required"],
       trim: true,
+      select: false
     },
     refreshToken: {
       type: String,
       default: "",
+      select: false
     },
     isEmailVerified: {
       type: Boolean,
@@ -44,15 +46,19 @@ const userSchema = new mongoose.Schema(
     emailVerificationToken: {
       type: String,
       default: "",
+      select: false
     },
     emailVerificationTokenExpiry: {
       type: Date,
+      select: false
     },
     resetPasswordToken: {
       type: String,
+      select: false
     },
     resetPasswordTokenExpiry: {
       type: Date,
+      select: false
     },
   },
   {
