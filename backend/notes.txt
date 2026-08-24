@@ -1,0 +1,101 @@
+project: PRD (project requirement document) - gives access to what to build what not to build.
+
+eg: Authentication system
+    then what should be features (users should be able to do)
+
+        - create an account 
+        - login account 
+        Extra features
+        - password reset may be and may not be i want to give them 
+        - google login 
+    so all these things comes under PRD.
+
+also how will i store data in my app comes under the PRD.
+
+docs:
+==> cors mdn
+=> prettier docs 
+=> express docs 
+=> node error docs
+=> jwt token docs 
+=> express validator 
+=> mail trap 
+=> nodemailer 
+=> cookies-parser
+
+Register:
+    - take some data 
+    - validate that data 
+    - check in DB if user already exists
+    - SAVED the new user ()
+    - user verification => email - mailgen package - npm i mailgen
+
+mail:
+- prepare the content
+- send an email
+
+to sending email we have 2 verieties:
+1. production - in this we use (aws ses or brevo)
+2. development or testing - here we use mailtrap
+
+
+Login:
+    - take data from user 
+    - validate 
+    - if user exists 
+    - if password is correct 
+    - Generate - TOKENS
+    - send tokens in coookies
+
+
+project setup:
+    - PRD 
+    - project structure
+    - package.json
+    - .env 
+    - express server 
+    - postman and api testing 
+    - cors 
+    - middlewares 
+    - constants 
+    - ApiResponse and ApiErrors
+    - database setup 
+    - healthcheck 
+    - async handler 
+    - schema and model
+    - auth tokens
+    - mail sending - mailgen, nodemailer, mail trap, brevo.
+
+db design:
+    1. User:
+        - somebody will create a project 
+        - each of these projects there will be some members assigned
+        - 
+
+    2. Project:
+        - 
+    3. Project Member:
+        - member refer to Project 
+        - member belong to User
+    4. Task
+        - task will belong to the project 
+        - project will have some tasks
+        - User will do these tasks (creating the task, getting allocated with the task)
+        - 
+
+    5. Subtask:
+        - each subtask will belonging to the Task 
+        - tasks will have subtasks 
+
+    6. Note:
+        - each note will belongs to a project 
+        - each project may or may not have a note. 
+
+
+*** Role based permission implementation:
+        - a logic that defines who is able to do what. 
+    for example: i want that only amin should be able to delete project and add members to the project.
+
+    - we want single handedly or from a single place control all the permission that are you able to use this controller or functionality or not, and writing this on a single file that is going yo be really robust and scalable application.
+
+    

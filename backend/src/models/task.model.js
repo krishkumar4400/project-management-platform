@@ -16,6 +16,7 @@ const taskSchema = new mongoose.Schema(
     project: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Project",
+      index: true,
       required: [true, "Project id is required"],
     },
     assignedBy: {
