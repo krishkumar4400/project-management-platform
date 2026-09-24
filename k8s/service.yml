@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  project-management-service
+spec:
+  selector:
+    app:  project-management
+  type:  ClusterIP
+  ports:
+  - name:  http
+    port:  3000
+    targetPort:  3000

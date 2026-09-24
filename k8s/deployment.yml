@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project-management-deployment
+  labels:
+    name: project-management-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: project-management
+  template:
+    metadata:
+      labels:
+        name: project-management
+    spec:
+      containers:
+        - image: project-management-bacend:v1
+          name: project-management-bacend
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "1g"
+              memory: "1024Mi"
+          livenessProbe:
+            httpGet:
+              path: /api/v1/project-management-deployment/health
+              port: 5000
+            initialDelaySeconds: 90
+            timeoutSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /api/v1/project-management-deployment/health
+              port: 5000
+            initialDelaySeconds: 30
+            timeoutSeconds: 10
+          env:
+            - name: ENVVARNAME
+              value: ENVVARVALUE
+          ports:
+            - containerPort: 3000
+              name: app-port
+          volumeMounts:
+            - mountPath: /data
+              name: data
+      volumes:
+        - name: data
+          emptyDir: {}
+      restartPolicy: Always
+      imagePullPolicy: Always

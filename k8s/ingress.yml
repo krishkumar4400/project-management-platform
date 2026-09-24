@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: project-management-ingress
+  labels:
+    app.kubernetes.io/name: myingress
+spec:
+  rules:
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: project-management-service
+            port: 
+              number: 80
